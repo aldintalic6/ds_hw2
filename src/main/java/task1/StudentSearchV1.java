@@ -31,7 +31,7 @@ public class StudentSearchV1 {
             // Search for students
             boolean isSearching = true;
             while (isSearching) {
-                System.out.print("Enter a student ID to search (or -1 to exit): ");
+                System.out.print("\nEnter a student ID to search (or -1 to exit): ");
                 int studentId = scanner.nextInt();
                 scanner.nextLine(); // Consume the newline character
 
