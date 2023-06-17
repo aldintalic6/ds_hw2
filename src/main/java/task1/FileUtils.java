@@ -3,21 +3,18 @@ package task1;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class FileUtils {
 
     public static Student[] readFile(String filePath) throws FileNotFoundException {
-        Student[] students;
+        // putting unsorted data from csv into an array
 
         File file = new File(filePath);
         Scanner scanner = new Scanner(file);
 
-        // Skip the header line if present
-        if (scanner.hasNextLine()) {
-            scanner.nextLine();
-        }
-
-        // Count the number of lines in the file to determine the size of the array
+        // count the number of lines in the file to determine the size of the array
         int numLines = 0;
         while (scanner.hasNextLine()) {
             scanner.nextLine();
@@ -26,16 +23,12 @@ public class FileUtils {
 
         scanner.close();
 
-        // Create an array to store the student objects
-        students = new Student[numLines];
+        // creating array to store the student objects
+        Student[] students = new Student[numLines];
 
-        // Read the file again to populate the array
+        // read the file again to populate the array
         scanner = new Scanner(file);
 
-        // Skip the header line if present
-        if (scanner.hasNextLine()) {
-            scanner.nextLine();
-        }
 
         int index = 0;
         while (scanner.hasNextLine()) {
@@ -61,7 +54,17 @@ public class FileUtils {
     }
 
     public static void writeToFile(Student[] students, String filePath) {
-        // Implement the logic to write the student data to a new CSV file
+        // putting sorted array data to the new file
+       try (FileWriter writer = new FileWriter(filePath)) {
+
+        for (Student student : students) {
+            String line = student.getStudentId() + ";" + student.getFullName() + ";" + student.getDateOfBirth() + ";" + student.getUniversityName() + ";" + student.getDepartmentCode() + ";" + student.getDepartmentName() + ";" + student.getYearOfEnrollment() + "\n";
+            writer.write(line);
+        }
+        System.out.println("Data written to the file successfully.");
+    } catch (IOException e) {
+        System.out.println("An error occurred while writing the file: " + e.getMessage());
+    }
     }
 }
 

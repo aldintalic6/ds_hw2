@@ -1,6 +1,7 @@
 package task1;
 
 public class BinarySearch {
+    static int returnsteps;
     public static int search(Student[] students, int key, int numSteps) {
         int low = 0;
         int high = students.length - 1;
@@ -17,8 +18,12 @@ public class BinarySearch {
                 high = mid - 1;
             }
         }
-
+        returnsteps = numSteps;
         return -1;
+    }
+
+    public static int returnsteps() {
+        return returnsteps;
     }
 }
 

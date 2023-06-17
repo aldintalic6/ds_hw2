@@ -19,33 +19,31 @@ public class StudentSearchV1 {
                 System.out.println("File not found. Exiting the program.");
                 return;
             }
+             System.out.print("Getting data to sort\n");
 
             // Sort the student array using merge sort
             MergeSort.sort(students);
-
-            // Save the sorted student data to a new CSV file
-            String sortedFilePath = "sorted.csv";
-            FileUtils.writeToFile(students, sortedFilePath);
-            System.out.println("Sorted data saved to the file.");
+            System.out.print("Data sorted\n");
+            FileUtils.writeToFile(students, "sorted.csv");
 
             // Search for students
             boolean isSearching = true;
             while (isSearching) {
                 System.out.print("\nEnter a student ID to search (or -1 to exit): ");
                 int studentId = scanner.nextInt();
-                scanner.nextLine(); // Consume the newline character
+                scanner.nextLine();   // new line
 
                 if (studentId == -1) {
                     isSearching = false;
                     System.out.println("Exiting the program.");
-                    continue;
                 }
 
                 int numSteps = 0;
                 int index = BinarySearch.search(students, studentId, numSteps);
+                numSteps = BinarySearch.returnsteps();
 
                 if (index != -1) {
-                    Student student = students[index];
+                    Student student = students[index];  
                     System.out.println("\nStudent Details:");
                         System.out.println("Student ID: " + student.getStudentId());
                         System.out.println("Full Name: " + student.getFullName());

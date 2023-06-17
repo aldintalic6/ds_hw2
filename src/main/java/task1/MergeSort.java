@@ -23,11 +23,11 @@ public class MergeSort {
         Student[] rightArray = new Student[rightSize];
 
         // Copy data to temporary arrays
-        for (int i = 0; i < leftSize; ++i) {
+        for (int i = 0; i < leftSize; i++) {
             leftArray[i] = students[low + i];
         }
 
-        for (int j = 0; j < rightSize; ++j) {
+        for (int j = 0; j < rightSize; j++) {
             rightArray[j] = students[mid + 1 + j];
         }
 
